@@ -1,24 +1,13 @@
-import React, { useEffect } from 'react';
-import { getUsers } from './store/thunks/getUsers';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import UserList from './containers/UserList';
 
-const App = () => {
-  const dispatch = useDispatch();
-  const { data, loading, error } = useSelector((state) => {
-    return state.users;
-  });
-  console.log({ data, loading, error });
-  useEffect(() => {
-    dispatch(getUsers());
-  }, []);
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
-  if (error) {
-    return <h1>{error}</h1>;
-  }
-  return <div>{data.length}</div>;
-};
+import PanelLayout from './components/PanelLayout';
 
-export default App;
+export default function App() {
+  return (
+    <div className="container mx-auto mt-8 px-4">
+      <PanelLayout label={'Users'} buttonName={'Add Users'}>
+        <UserList />
+      </PanelLayout>
+    </div>
+  );
+}
