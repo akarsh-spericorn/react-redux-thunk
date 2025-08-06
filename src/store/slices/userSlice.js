@@ -1,31 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUsers } from '../thunks/getUsers';
+import { getUsers, addUser } from '../index';
 const usersSlice = createSlice({
   name: 'user',
   initialState: {
     data: [],
-    loading: false,
+    getUserLoading: false,
     error: null,
   },
   reducers: {},
   extraReducers(builder) {
     builder.addCase(getUsers.pending, (state, action) => {
-      state.loading = true;
+      state.getUserLoading = true;
       state.error = null;
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.data = action.payload;
-      state.loading = false;
+      state.getUserLoading = false;
       state.error = null;
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       state.error = 'Something went wrong';
-      state.loading = false;
+    });
+    builder.addCase(addUser.pending, (state, action) => {
+      state.error = null;
+    });
+    builder.addCase(addUser.fulfilled, (state, action) => {
+      // state.data = action.payload;
+      state.error = null;
+    });
+    builder.addCase(addUser.rejected, (state, action) => {
+      state.error = 'Something went wrong';
     });
   },
 });
-
-// export const { addMovie, deleteMovie } = moviesSlice.actions;
 
 const usersReducer = usersSlice.reducer;
 

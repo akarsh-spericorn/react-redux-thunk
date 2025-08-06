@@ -2,11 +2,22 @@
   "users": [
     {
       "name": "Name One",
-      "id": 1
+      "id": "1"
     },
     {
       "name": "Name One",
-      "id": 2
+      "id": "2"
+    },
+    {
+      "id": "51c4",
+      "name": "Tammy Yost"
+    }
+  ],
+  "albums": [
+    {
+      "id": "e703",
+      "name": "Albums One",
+      "userId" : "51c4"
     }
   ]
 }

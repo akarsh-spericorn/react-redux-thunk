@@ -1,8 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-const getUsers = createAsyncThunk('users/get_user', async (payload) => {
-  const response = await axios.get('httsp://localhost:3001/users');
+import gateway from '../../gateway';
+
+import { delay } from '../../utils';
+
+const getUsers = createAsyncThunk('users/get_user', async () => {
+  await delay(500);
+  const response = await gateway.get('/users');
   return response.data;
 });
 
